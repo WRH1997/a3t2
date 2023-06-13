@@ -14,7 +14,7 @@ app.use(parser.json());
 
 app.get('/test', (req, res) => {
   let ip1 = ip.address();
-  res.json({'data':'someData', "req":req.body, "ip":ip1});
+  res.json({'data':'XXXsomeData', "req":req.body, "ip":ip1});
 })
 
 
