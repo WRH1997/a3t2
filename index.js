@@ -13,8 +13,8 @@ app.use(parser.json());
 
 
 app.get('/test', (req, res) => {
-  console.log(req);
-  res.json({'data':'someData', "req":req, "ip":ip.address()});
+  let ip1 = ip.address();
+  res.json({'data':'someData', "req":req.body, "ip":ip1});
 })
 
 
