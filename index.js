@@ -15,7 +15,7 @@ app.use(parser.json());
 
 app.get('/test', (req, res) => {
   let ip1 = ip.address();
-  fetch("http://192.168.2.14:5000/incoming", {
+  fetch("http://34.31.204.43:5000/incoming", {
     method: "POST",
     headers: {
       'Accept': 'application/json',
@@ -25,7 +25,7 @@ app.get('/test', (req, res) => {
   }).then((ret) => {
     return ret.json();
   }).then((json)=>{
-    console.log(json);
+    //console.log(json);
     res.json(json);
   })
   //res.json({'data':'YYYsomeData', "req":req.body, "ip":ip1});
