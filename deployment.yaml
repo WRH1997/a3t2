@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: my-app
-        image: gcr.io/b00919848-cloud/app:v1
+        image: gcr.io/b00919848-cloud/app:latest
         ports:
         - containerPort: 6000
 ---
