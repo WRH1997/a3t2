@@ -15,12 +15,12 @@ spec:
     spec:
       containers:
       - name: my-app
-        image: gcr.io/[PROJECT_ID]/app:v1
+        image: gcr.io/b00919848-cloud/app:v1
         ports:
-        - containerPort: 4000
+        - containerPort: 6000
         env:
         - name: PORT
-          value: "4000"
+          value: "6000"
         - name: LOG_LEVEL
           value: "info"
         - name: NODE_ENV
@@ -33,8 +33,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 80
-    targetPort: 4000
+  - port: 6000
+    targetPort: 6000
     protocol: TCP
   selector:
     app: my-app
