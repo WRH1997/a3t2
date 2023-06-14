@@ -6,7 +6,6 @@ const parser = require('body-parser');
 const fs = require('fs');
 const axios = require('axios');
 var path = require('path');
-const res = require('express/lib/response');
 
 
 var t = [];
@@ -22,7 +21,7 @@ app.use(parser.urlencoded({
 app.use(parser.json());
 
 
-app.post("/store-file", (request, response) => {
+app.post("/store-file", (request, res) => {
   var file = null;
   var data = null;
   try{
