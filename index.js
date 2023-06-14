@@ -103,7 +103,7 @@ app.post('/calculate', (request, res) => {
 
 app.get('/test', (req, res) => {
   //let ip1 = ip.address();
-  fetch("http://34.172.108.163:5000/test", {
+  /*fetch("http://34.172.108.163:5000/test", {
     method: "POST",
     headers: {
       'Accept': 'application/json',
@@ -115,7 +115,8 @@ app.get('/test', (req, res) => {
   }).then((json)=>{
     //console.log(json);
     res.json(json);
-  })
+  })*/
+  res.json({"succ":"ess"});
 })
 
 

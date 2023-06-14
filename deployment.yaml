@@ -7,6 +7,7 @@ spec:
     matchLabels:
       app: my-app
   replicas: 3
+  minReadySeconds: 10
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -20,14 +21,14 @@ spec:
     spec:
       containers:
       - name: my-app1
-        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t2@sha256:ccd230e4905a08968e7a504d38eecfe9c89d5eb09ecb729922dd42ad380cb684
+        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t2:latest
         ports:
         - containerPort: 6000
         volumeMounts: 
         - mountPath: "/waleed_PV_dir/"
           name: pvc-vol
       - name: my-app2
-        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t3@sha256:821627d44c3ede7c264b81fe3d2f22b33558c35378d4cad2aae3ca79ee157b4c
+        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t3:latest
         ports:
         - containerPort: 5000
         volumeMounts: 
