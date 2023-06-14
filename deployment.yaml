@@ -15,14 +15,14 @@ spec:
     spec:
       containers:
       - name: my-app1
-        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t2@sha256:a09ab036c46ebb38f5f4d8047b7a263ee27b72fc73edf54c3a86afc4219bd125
+        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t2@sha256:3af6d63e8e9c5761ff8093e42abfa18ccc2a2506b90db5919758ea581ac46c96
         ports:
         - containerPort: 6000
         volumeMounts: 
         - mountPath: "/waleed_PV_dir/"
           name: pvc-vol
       - name: my-app2
-        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t3@sha256:166c099227569e60e18a5435addab566dcc302e1edd259fe7abc726e311da114
+        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t3@sha256:821627d44c3ede7c264b81fe3d2f22b33558c35378d4cad2aae3ca79ee157b4c
         ports:
         - containerPort: 5000
         volumeMounts: 

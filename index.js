@@ -8,11 +8,11 @@ const axios = require('axios');
 var path = require('path');
 
 
-/*var t = [];
+var t = [];
 fs.readdirSync("/").forEach(file => {
   t.push(file);
 });
-console.log(t);*/
+console.log(t);
 
 
 app.use(parser.urlencoded({
