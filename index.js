@@ -116,7 +116,7 @@ app.get('/test', (req, res) => {
     //console.log(json);
     res.json(json);
   })*/
-  res.json({"succ":"ess"});
+  res.json({"succ":"ess1"});
 })
 
 
