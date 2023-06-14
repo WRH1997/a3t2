@@ -8,11 +8,11 @@ const axios = require('axios');
 var path = require('path');
 
 
-var t = [];
+/*var t = [];
 fs.readdirSync("/").forEach(file => {
   t.push(file);
 });
-console.log(t);
+console.log(t);*/
 
 
 app.use(parser.urlencoded({
@@ -51,15 +51,15 @@ app.post("/store-file", (request, res) => {
 
 
 app.post('/calculate', (request, res) => {
-  let file = request.body['file'];
+  /*let file = request.body['file'];
   let filePath = "/waleed_PV_dir/"+file;
   let exists = fileExists(filePath);
   let contents = null;
   if(exists){
     contents = fs.readFileSync(filePath, 'utf-8');
   }
-  res.json({"exists?:": exists, "content":contents});
-/*  var file = '';
+  res.json({"exists?:": exists, "content":contents});*/
+  var file = '';
   var prod = '';
   //https://stackoverflow.com/questions/71815346/check-if-req-body-is-empty-doesnt-work-with-express
   if(Object.keys(request.body).length==0){
@@ -75,7 +75,7 @@ app.post('/calculate', (request, res) => {
       prod = data['product'];
   }
   file = data['file'];
-  var filePath = '/data/' + file;//__dirname+'/../PS/' + file;
+  var filePath = "/waleed_PV_dir/" + file;
   if(!fileExists(filePath)){
       res.json({"file":file, "error":"File not found."});
       return;
@@ -92,12 +92,12 @@ app.post('/calculate', (request, res) => {
   else{
       jsonObj.prod = prod;
   }
-  console.log(prod+" "+data['product']+" "+jsonObj.prod);
+  //console.log(prod+" "+data['product']+" "+jsonObj.prod);
   var userJson = JSON.parse(JSON.stringify(jsonObj));
   getSum(userJson).then((response) => {
       //console.log(response);
       res.json(response.data);
-  })*/
+  })
 })
 
 app.get('/test', (req, res) => {
@@ -125,6 +125,40 @@ function fileExists(filePath){
   else{
       return false;
   }
+}
+
+async function getSum(reqBody){
+  var resp = await axios.post('http://34.172.108.163:5000/getSum', reqBody);
+  return resp;
+}
+
+//!!!negsh from Cloud A1 (ref it?)
+function validateCSV(filePath){
+  var content = fs.readFileSync(filePath, 'utf-8');
+  if(content.trim()==''){
+      return false;
+  }
+  if(!content.includes(",")){
+      return false;
+  }
+  var lines = content.split('\n');
+  if(lines[0].trim().length==0){
+      return false;
+  }
+  var headers = lines[0].trim().split(",");
+  if(headers.length!=2 || headers[0].toLowerCase().trim()!='product' || headers[1].toLowerCase().trim()!='amount'){
+      return false;
+  }
+  for(var x=0; x<lines.length; x++){
+      if(x==0){
+          continue;
+      }
+      var values = lines[x].trim().split(",");
+      if(values.length!=2 || typeof values[0]!='string' || isNaN(values[1])){
+          return false;
+      }
+  }
+  return true;
 }
 
 
