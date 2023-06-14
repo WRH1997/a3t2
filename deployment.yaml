@@ -15,13 +15,20 @@ spec:
     spec:
       containers:
       - name: my-app1
-        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t2:latest
+        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t2@sha256:8bef6c75d62641e3098097c710ffc6a83d7405bb07c699234358977cb8885a60
         ports:
         - containerPort: 6000
+        volumeMounts: 
+        - mountPath: "./waleed_PV_dir/"
+          name: pvc-vol
       - name: my-app2
-        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t3:latest
+        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t3@sha256:3ecf982a4bf100331ad74bad83f85ff5389c13f15ae56800c92b964dd588dc96
         ports:
         - containerPort: 5000
+      volumes:
+      - name: pvc-vol
+        persistentVolumeClaim:
+          claimName: pvc-demo
 ---
 apiVersion: v1
 kind: Service

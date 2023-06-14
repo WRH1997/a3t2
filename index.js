@@ -7,6 +7,23 @@ const fs = require('fs');
 const axios = require('axios');
 var path = require('path');
 
+
+var t = [];
+fs.readdirSync("./").forEach(file => {
+  t.push(file);
+});
+t.push("{back}")
+try{
+  fs.readdirSync("../").forEach(file => {
+    t.push(file);
+  });
+}
+catch(err){
+  t.push(err)
+}
+console.log(t);
+
+
 app.use(parser.urlencoded({
   extended: true,
 }))
@@ -14,7 +31,8 @@ app.use(parser.json());
 
 
 app.get('/test', (req, res) => {
-  let ip1 = ip.address();
+  res.json(t);
+  /*let ip1 = ip.address();
   fetch("http://34.172.108.163:5000/incoming", {
     method: "POST",
     headers: {
@@ -27,7 +45,7 @@ app.get('/test', (req, res) => {
   }).then((json)=>{
     //console.log(json);
     res.json(json);
-  })
+  })*/
   //res.json({'data':'YYYsomeData', "req":req.body, "ip":ip1});
 })
 
