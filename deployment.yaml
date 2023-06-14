@@ -6,7 +6,12 @@ spec:
   selector:
     matchLabels:
       app: my-app
-  replicas: 1
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
   template:
     metadata:
       labels:
@@ -15,7 +20,7 @@ spec:
     spec:
       containers:
       - name: my-app1
-        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t2@sha256:3af6d63e8e9c5761ff8093e42abfa18ccc2a2506b90db5919758ea581ac46c96
+        image: gcr.io/b00919848-cloud/github.com/wrh1997/a3t2@sha256:ccd230e4905a08968e7a504d38eecfe9c89d5eb09ecb729922dd42ad380cb684
         ports:
         - containerPort: 6000
         volumeMounts: 
