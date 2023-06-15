@@ -1,11 +1,8 @@
-steps:
-  #step1      
+steps:    
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'gcr.io/b00919848-cloud/github.com/wrh1997/a3t2:$COMMIT_SHA', '.' ]
-  #step 2
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/b00919848-cloud/github.com/wrh1997/a3t2:$COMMIT_SHA']
-  #STEP-3
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['set', 'image', 'deployment/my-app-deployment', 'my-app1=gcr.io/b00919848-cloud/github.com/wrh1997/a3t2:$COMMIT_SHA']
   env:
