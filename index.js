@@ -78,7 +78,7 @@ app.post('/calculate', (request, res) => {
   file = data['file'];
   var filePath = "/waleed_PV_dir/" + file;
   if(!fileExists(filePath)){
-      res.json({"file":file, "error":"File not found."});
+      res.json({"file":file, "error":"Input file not in CSV format."});
       return;
   }
   if(!validateCSV(filePath)){
