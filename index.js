@@ -60,6 +60,10 @@ app.post('/calculate', (request, res) => {
     contents = fs.readFileSync(filePath, 'utf-8');
   }
   res.json({"exists?:": exists, "content":contents});*/
+  if(request.body['file'==null]){
+      res.json({"file": null, "error": "Invalid JSON input."});
+      return;
+  }
   var file = '';
   var prod = '';
   //https://stackoverflow.com/questions/71815346/check-if-req-body-is-empty-doesnt-work-with-express
@@ -78,7 +82,7 @@ app.post('/calculate', (request, res) => {
   file = data['file'];
   var filePath = "/waleed_PV_dir/" + file;
   if(!fileExists(filePath)){
-      res.json({"file":file, "error":"Input file not in CSV format."});
+      res.json({"file":file, "error":"File not found."});
       return;
   }
   if(!validateCSV(filePath)){
