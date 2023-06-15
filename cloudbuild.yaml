@@ -7,4 +7,4 @@ steps:
   args: ['set', 'image', 'deployment/my-app-deployment', 'my-app1=gcr.io/b00919848-cloud/github.com/wrh1997/a3t2:$COMMIT_SHA']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=gke-test-1'
