@@ -60,7 +60,7 @@ app.post('/calculate', (request, res) => {
     contents = fs.readFileSync(filePath, 'utf-8');
   }
   res.json({"exists?:": exists, "content":contents});*/
-  if(request.body['file'==null]){
+  if(request.body['file']==null){
       res.json({"file": null, "error": "Invalid JSON input."});
       return;
   }
