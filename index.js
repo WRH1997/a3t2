@@ -113,7 +113,7 @@ function fileExists(filePath){
 }
 
 async function getSum(reqBody){
-  var resp = await axios.post('http://34.135.162.183:5000/getSum', reqBody);
+  var resp = await axios.post('http://104.198.182.183:5000/getSum', reqBody);
   return resp;
 }
 
