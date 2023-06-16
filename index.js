@@ -98,7 +98,7 @@ app.post('/calculate', (request, res) => {
 
 
 app.get('/test', (req, res) => {
-  let testData = "some test data";
+  let testData = "UPDATED THRPUGH CICD";
   res.json({"Result":testData});
 })
 
