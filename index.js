@@ -1,3 +1,11 @@
+/*
+CITATION NOTE: The following code, which constitutes container 1 server, was adapted from my Assignment 1
+submission (since the A3's instructions allowed for the re-use of A1's code). However, the necessary modifications have been made.
+The original code being referenced can be found at the following URL.
+URL: https://git.cs.dal.ca/courses/2023-summer/csci4145-5409/alhindi/-/tree/main/A1/Container1
+*/
+
+
 const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
@@ -8,12 +16,6 @@ const axios = require('axios');
 var path = require('path');
 
 
-var t = [];
-fs.readdirSync("/").forEach(file => {
-  t.push(file);
-});
-console.log(t);
-
 
 app.use(parser.urlencoded({
   extended: true,
@@ -21,11 +23,11 @@ app.use(parser.urlencoded({
 app.use(parser.json());
 
 
+
 app.post("/store-file", (request, res) => {
   var file = null;
   var data = null;
   try{
-      //https://stackoverflow.com/questions/71815346/check-if-req-body-is-empty-doesnt-work-with-express
       if(Object.keys(request.body).length==0){
         res.json({"file": null, "error": "Invalid JSON input."});
         return;
@@ -52,21 +54,12 @@ app.post("/store-file", (request, res) => {
 
 
 app.post('/calculate', (request, res) => {
-  /*let file = request.body['file'];
-  let filePath = "/waleed_PV_dir/"+file;
-  let exists = fileExists(filePath);
-  let contents = null;
-  if(exists){
-    contents = fs.readFileSync(filePath, 'utf-8');
-  }
-  res.json({"exists?:": exists, "content":contents});*/
   if(request.body['file']==null){
       res.json({"file": null, "error": "Invalid JSON input."});
       return;
   }
   var file = '';
   var prod = '';
-  //https://stackoverflow.com/questions/71815346/check-if-req-body-is-empty-doesnt-work-with-express
   if(Object.keys(request.body).length==0){
       res.json({"file": null, "error": "Invalid JSON input."});
       return;
@@ -97,30 +90,16 @@ app.post('/calculate', (request, res) => {
   else{
       jsonObj.prod = prod;
   }
-  //console.log(prod+" "+data['product']+" "+jsonObj.prod);
   var userJson = JSON.parse(JSON.stringify(jsonObj));
   getSum(userJson).then((response) => {
-      //console.log(response);
       res.json(response.data);
   })
 })
 
+
 app.get('/test', (req, res) => {
-  //let ip1 = ip.address();
-  /*fetch("http://34.172.108.163:5000/test", {
-    method: "POST",
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({"data":"someData", "dirs":t, "file":req.body['file']})
-  }).then((ret) => {
-    return ret.json();
-  }).then((json)=>{
-    //console.log(json);
-    res.json(json);
-  })*/
-  res.json({"XXsucc":"ess12"});
+  let testData = "some test data";
+  res.json({"Result":testData});
 })
 
 
@@ -138,7 +117,7 @@ async function getSum(reqBody){
   return resp;
 }
 
-//!!!negsh from Cloud A1 (ref it?)
+
 function validateCSV(filePath){
   var content = fs.readFileSync(filePath, 'utf-8');
   if(content.trim()==''){
@@ -168,9 +147,10 @@ function validateCSV(filePath){
 }
 
 
+
+
 const port = 6000;
 
-//https://expressjs.com/en/starter/hello-world.html
 app.listen(port, () => {
   console.log(`Server 1 started on ${ip.address()}:${port}`)
 })
